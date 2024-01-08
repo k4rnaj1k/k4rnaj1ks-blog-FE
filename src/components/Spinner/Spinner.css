@@ -1,0 +1,25 @@
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#fullscreen-spinner {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    
+    border-radius: 50%;
+    border-top: white solid;
+    border-right: white solid;
+    /* border-style: solid; */
+    animation: rotate 1.5s linear infinite;
+}
