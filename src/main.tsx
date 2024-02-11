@@ -9,6 +9,7 @@ import './main.css';
 import { AboutPage } from './pages/About';
 import { BlogPage } from './pages/Blog';
 import { CreateBlogPage } from './pages/CreateBlog';
+import { BlogEditPage } from './pages/BlogEdit';
 
 const router = createBrowserRouter([{
   path: '/',
@@ -24,6 +25,10 @@ const router = createBrowserRouter([{
   {
     path: '/blogs/:blogId',
     element: <BlogPage />
+  },
+  {
+    path: '/blogs/:blogId/edit',
+    element: <BlogEditPage />
   },
   {
     path: '/about',

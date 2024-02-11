@@ -11,6 +11,7 @@ export const GET_BLOG = gql`
       title
       content
       author {
+        id,
         username
       }
     }

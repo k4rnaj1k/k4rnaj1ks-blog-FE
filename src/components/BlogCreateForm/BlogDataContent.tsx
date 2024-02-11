@@ -1,23 +1,40 @@
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BlogContent } from "../BlogContent/BlogContent";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { GET_AUTHORS } from "../../queries/GetAuthors";
 import { Author } from "../../types/author";
-import { CREATE_BLOG } from "../../mutations/newBlog";
-import { useNavigate } from "react-router-dom";
 
-export const BlogCreateForm = () => {
-    const { register, getValues, handleSubmit, watch } = useForm();
+export type BlogData = {
+    title: string,
+    content: string,
+    authorId: number
+}
+
+type BlogDataFormProps = {
+    title?: string,
+    content?: string,
+    authorId?: number,
+    onSubmit: ({authorId, content, title}: BlogData) => void
+};
+
+export const BlogDataForm = ({
+    title: blogTitle = '', content: blogContent = '', authorId: blogAuthorId,
+    onSubmit
+}: BlogDataFormProps) => {
+    const { register, handleSubmit, watch } = useForm({
+        defaultValues: {
+            title: blogTitle,
+            content: blogContent,
+            authorId: blogAuthorId || 1
+        }
+    });
     const [isPreviewing, setPreviewing] = useState(false);
     const fieldWatch = watch(['title', 'content', 'authorId']);
-    const navigate = useNavigate();
     const [title, content, authorId] = fieldWatch;
 
     const { data: getAuthors, loading: authorsLoading } = useQuery(GET_AUTHORS);
     const allAuthors = getAuthors?.allAuthors || [];
-
-    const [mutate, { loading }] = useMutation(CREATE_BLOG);
 
     const previewContent = useCallback(() => {
         const author = allAuthors.find((author: Author) => author.id === authorId);
@@ -36,17 +53,8 @@ export const BlogCreateForm = () => {
         </select>
     };
 
-
-
-    const onSubmit = () => {
-        const [authorId, title, content] = getValues(['authorId', 'title', 'content']);
-        mutate({
-            variables: { authorId, title, content }, onCompleted:
-                (data) => navigate(`/blogs/${data.newBlog.id}`)
-        })
-    };
     return <div className="container mt-3">
-        <form aria-disabled={loading} onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
                 <p className="h5">Blog author</p>
                 {authorsOptions()}
