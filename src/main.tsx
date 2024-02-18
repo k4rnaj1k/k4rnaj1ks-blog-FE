@@ -12,7 +12,6 @@ import { CreateBlogPage } from './pages/CreateBlog';
 import { BlogEditPage } from './pages/BlogEdit';
 
 const router = createBrowserRouter([{
-  path: '/',
   element: <HomePage />,
   children: [{
     path: '/blogs',
