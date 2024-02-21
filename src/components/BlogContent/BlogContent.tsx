@@ -1,6 +1,6 @@
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 type BlogContentProps = {
     title: string,
@@ -25,7 +25,7 @@ export const BlogContent = ({ title, content, author }: BlogContentProps) => <di
                       PreTag="div"
                       children={String(children).replace(/\n$/, '')}
                       language={match[1]}
-                      style={dark}
+                      style={oneDark}
                     />
                   ) : (
                     <code {...rest} ref={ref} className={className}>
