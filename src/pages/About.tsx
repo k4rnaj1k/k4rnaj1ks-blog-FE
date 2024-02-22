@@ -4,7 +4,7 @@ import remarkBreaks from "remark-breaks";
 export const AboutPage = () => <div className="container text-center mt-4">
     <Markdown remarkPlugins={[remarkBreaks]} className="card ms-5 me-5 fs-4 pt-4">
     &#10;
-    Hi, my name is Vlad, I am 20 y.o. and I am a FullStack developer from Ukraine🌻.
+    Hi, my name is Vlad, I am 21 y.o. and I am a FullStack developer from Ukraine🌻.
     &#10;
     [![Donate to Ukraine.](https://media.giphy.com/media/9ZB4vLkYGlfaOilOV5/giphy.gif)](https://savelife.in.ua/en/donate-en/#donate-army-card-once)
 
