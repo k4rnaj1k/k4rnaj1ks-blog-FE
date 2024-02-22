@@ -25,7 +25,7 @@ export const HomePage = () => {
             </button>
           </li>
           <li className="nav-item">
-            <button type="button" className="nav-link opacity-0" onClick={() => window.location.assign('/login')}>
+            <button type="button" className="nav-link opacity-0" style={{ cursor: 'default' }} onClick={() => window.location.assign('/login')}>
               Log in
             </button>
           </li>
